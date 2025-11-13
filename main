@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>hendysnuts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #020203;
+      --text: #f5f5f5;
+      --accent: #f0c87a;
+      --accent-soft: rgba(240, 200, 122, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111111 0%, var(--bg) 55%, #000000 100%);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .wrap {
+      padding: 24px;
+    }
+
+    .relic-ring {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 32px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15), transparent 60%),
+        radial-gradient(circle at 70% 80%, rgba(240, 200, 122, 0.35), transparent 65%),
+        radial-gradient(circle, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 1));
+      box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.9),
+        0 0 24px var(--accent-soft),
+        0 0 4px rgba(0, 0, 0, 1) inset;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: slow-spin 32s linear infinite;
+    }
+
+    .relic-inner {
+      width: 70%;
+      height: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 0 10px rgba(240, 200, 122, 0.6));
+    }
+
+    /* swap this out with an actual acorn image when you have it */
+    .relic-acorn {
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 20%, #fbe7b3 0%, #c58c42 45%, #5a3413 100%);
+      box-shadow:
+        0 0 12px rgba(0, 0, 0, 0.9),
+        0 0 10px rgba(240, 200, 122, 0.6);
+      position: relative;
+    }
+
+    .relic-acorn::before {
+      /* little “cap” so it reads more like an acorn */
+      content: "";
+      position: absolute;
+      top: -6px;
+      left: 10px;
+      right: 10px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 50% 10%, #e0c58f 0%, #7a4a20 55%, #3a210c 100%);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .line {
+      text-transform: lowercase;
+      letter-spacing: 0.09em;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      opacity: 0;
+      animation: fade-in 1.2s ease forwards;
+    }
+
+    .line:nth-of-type(1) {
+      animation-delay: 1.1s;
+    }
+
+    .line:nth-of-type(2) {
+      animation-delay: 1.6s;
+    }
+
+    .enter-btn {
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 28px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      text-transform: lowercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .enter-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0% 0%, rgba(240, 200, 122, 0.35), transparent 65%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .enter-btn:hover {
+      border-color: var(--accent);
+      background: rgba(240, 200, 122, 0.06);
+      transform: translateY(-1px);
+      box-shadow: 0 0 18px rgba(240, 200, 122, 0.28);
+    }
+
+    .enter-btn:hover::before {
+      opacity: 1;
+    }
+
+    .enter-btn:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow: none;
+    }
+
+    @keyframes slow-spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .line {
+        font-size: 1rem;
+      }
+      .enter-btn {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="relic-ring">
+      <div class="relic-inner">
+        <!-- basic acorn orb; replace this div with an <img> when you have your own art -->
+        <div class="relic-acorn"></div>
+      </div>
+    </div>
+
+    <div class="line">you found the stash.</div>
+    <div class="line">welcome to the hendyverse.</div>
+
+    <!-- change the href when you have an inner page ready -->
+    <a class="enter-btn" href="#">
+      enter
+    </a>
+  </div>
+</body>
+</html>
